@@ -1,7 +1,6 @@
 module ControlUnit (
-    input [5:0] opcode,clk , 
-    output reg reg_dst, alu_src, mem_to_reg, reg_write,
-    output reg mem_read, mem_write, branch,
+    input [5:0] opcode,clk ,[5:0] funct,
+    output reg reg_dst, alu_src, mem_to_reg, reg_write, mem_read, mem_write, branch,
     output reg [3:0] ALU_Control
 );
     always @(posedge clk) begin

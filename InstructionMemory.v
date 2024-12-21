@@ -3,3 +3,4 @@ module InstructionMemory( input [31:0] ReadAddress , output [31:0] ReadData );
 
     assign ReadData = {Memory[ReadAddress], Memory[ReadAddress+1], Memory[ReadAddress+2], Memory[ReadAddress+3]};
 endmodule
+    

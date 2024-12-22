@@ -6,16 +6,16 @@ module ControlUnit (
     always @(posedge clk) begin
         // Default values
         reg_dst = 0; alu_src = 0; mem_to_reg = 0; reg_write = 0;
-        mem_read = 0; mem_write = 0; branch = 0; alu_op = 4'b0010;
+        mem_read = 0; mem_write = 0; branch = 0; 
 
         case (opcode)
             6'b000000: begin // R-type instructions
                 reg_dst = 1; reg_write = 1;
                 case (funct)
-                    6'b 100000 : begin assign ALU_Control = 4'b 0010 ; end // ADD 
-                    6'b 100010 : begin assign ALU_Control = 4'b 0110 ; end  //SUB
                     6'b 100100 : begin assign ALU_Control = 4'b 0000 ; end  //AND 
                     6'b 100101 : begin assign ALU_Control = 4'b 0001 ; end  // OR
+                    6'b 100000 : begin assign ALU_Control = 4'b 0010 ; end // ADD 
+                    6'b 100010 : begin assign ALU_Control = 4'b 0110 ; end  //SUB
                 endcase
             end
             6'b100011: begin // lw
@@ -36,15 +36,3 @@ module ControlUnit (
 endmodule
 
 
-// We subsidary added the ALU_CONTROL unit to  main control unit
-
-module ALU_Control_unit (input [5:0] funct,output reg [3:0]ALU_Control )
-    case (funct)
- 6'b 100000 : begin assign ALU_Control = 4'b 0010 ; end // ADD 
- 6'b 100010 : begin assign ALU_Control = 4'b 0110 ; end  //SUB
- 6'b 100100 : begin assign ALU_Control = 4'b 0000 ; end  //AND 
- 6'b 100101 : begin assign ALU_Control = 4'b 0001 ; end  // OR
-
- endcase
-
-endmodule
